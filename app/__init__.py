@@ -4,6 +4,11 @@ from telebot import custom_filters
 
 from telebot.storage import StateMemoryStorage
 
+from dotenv import load_dotenv
+load_dotenv('.env')
+
+import os
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 state_storage = StateMemoryStorage() 
 
@@ -13,7 +18,7 @@ class States(StatesGroup):
     mail = State()
 
 
-bot = telebot.TeleBot('6918830690:AAFlkINc_QPnJfQE0cnILqg2ey5i2PbBp-c', state_storage=state_storage)
+bot = telebot.TeleBot(BOT_TOKEN, state_storage=state_storage)
 
 from mail_tracking import check_post, parse_post
 from db.files import get_admins, save_admins, get_users, save_users, get_request_users, save_request_users
